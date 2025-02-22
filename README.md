@@ -4,6 +4,9 @@
 
 [KekikStream](https://github.com/keyiflerolsun/KekikStream) python konsol projesinin dotnet 9 Avalonia tabanlı crossplatform desktop kullanıcı dostu versiyonudur.
 
+Bilgisayarda .Net 9  kurulu olması gerekir Python kurulu olmasına gerek yoktur. 
+Yazılım ilk çalıştığında otomatik olarak kendi embedded Python ortamını (zaten bir Python kurulumu varsa ondan izole çalışır) ve pip üzerinden KekikStream kurulumunu yapacaktır.
+
 Uzun zamandır CloudStream, Kodi, MediaPortal gibi bir proje geliştirmek istiyordum ama vakit bulamıyordum.
 
 Kodi harika bir proje, her işletim sisteminde çalışabilir fakat masaüstü kullanım deneyimi başarısız.
