@@ -1,0 +1,80 @@
+name: .NET Release
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:  # Manuel olarak çalıştırabilmek için.
+  push:
+    branches:
+      - main          # Ana branch'e push yapıldığında çalışır.
+    paths-ignore:
+      - "**/*.md"     # Sadece .md dosyaları değiştiğinde çalışmaz.
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 🚀 Repository’yi Kopyala
+        uses: actions/checkout@v4.2.2
+
+      - name: 🛠️ .NET SDK’yı Kur
+        uses: actions/setup-dotnet@v4.3.0
+        with:
+          dotnet-version: 9.0.x
+
+      - name: 📦 Bağımlılıkları Yükle
+        run: dotnet restore
+
+      - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
+        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
+
+      - name: 🗜️ "KekikPlayer.exe" Dosyasını 7z ile Arşivle
+        run: |
+          cd publish
+          7z a -mx9 ../KekikPlayer.7z KekikPlayer.exe
+
+      - name: 🏷️ Versiyon Numarası Al
+        id: version
+        shell: pwsh
+        run: |
+          $TimeZone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Turkey Standard Time")
+          $TurkeyTime = [System.TimeZoneInfo]::ConvertTime([System.DateTime]::UtcNow, $TimeZone)
+          $version = $TurkeyTime.ToString("yyyy.MM.dd-HH:mm:ss")
+          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+
+      - name: 🔥 Mevcut "latest" Release ve Tag'i Sil
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Release ID'yi al
+          RELEASE_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/releases/tags/latest" | jq -r .id)
+
+          # Eğer Release ID varsa, önce release'i sonra tag'i sil
+          if [[ "$RELEASE_ID" != "null" ]]; then
+            echo "Mevcut release ($RELEASE_ID) siliniyor..."
+            curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/$REPO/releases/$RELEASE_ID"
+
+            echo "Tag 'latest' siliniyor..."
+            git push --delete origin latest || true
+          else
+            echo "Mevcut release bulunamadı, devam ediliyor..."
+          fi
+        shell: bash
+
+      - name: 🚀 Güncel Sürümü GitHub Releases'a Yükle
+        uses: softprops/action-gh-release@v2.2.1
+        with:
+          tag_name: latest
+          name: "Güncel Sürüm"
+          body: "${{ env.VERSION }} - ${{ github.sha }} için otomatik oluşturulan sürüm."
+          draft: false
+          prerelease: false
+          files: KekikPlayer.7z
