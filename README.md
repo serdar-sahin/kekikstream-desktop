@@ -2,7 +2,7 @@
 
 ## Nedir? 
 
-[KekikStream](https://github.com/keyiflerolsun/KekikStream) python konsol projesinin masaüstü kullanıcı dostu versiyonudur.
+[KekikStream](https://github.com/keyiflerolsun/KekikStream) python konsol projesinin dotnet 9 Avalonia tabanlı crossplatform desktop kullanıcı dostu versiyonudur.
 
 Uzun zamandır CloudStream, Kodi, MediaPortal gibi bir proje geliştirmek istiyordum ama vakit bulamıyordum.
 
@@ -14,7 +14,7 @@ Kafamdaki yapı tamamen Cloudstream gibi plugin tabanlı bir yazılım olsun, fi
 
 Cloudstream'i görüp inceledikten sonra adamlar yapmış abi dedim ve uğraşmaya gerek yok diye düşündüm ama işletim sistemi bağımlılığından dolayı tekrar isteğim arttı.
 
-Aynı zamanda Cloudstream'e eklenti yapan KekikAkademi [@keyiflerolsun](https://github.com/keyiflerolsun) kardeşin başarılı işlerini görünce projemin plugin ksımını python ve dotnet tabanlı tasarlmaya karar verdim.
+Aynı zamanda Cloudstream'e eklenti yapan KekikAkademi [@keyiflerolsun](https://github.com/keyiflerolsun) kardeşin başarılı işlerini görünce projemin plugin ksımını python ve dotnet tabanlı tasarlamaya karar verdim.
 
 Uzun lafın kısası bu proje asıl projem için araştırma geliştirme deneme projesidir.
 
