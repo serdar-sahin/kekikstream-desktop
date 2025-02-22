@@ -1,6 +1,8 @@
 from .Core  import PluginManager, ExtractorManager, UIManager, MediaManager, PluginBase, ExtractorBase, SeriesInfo
 import asyncio
 from contextlib import suppress
+from pkg_resources import get_distribution
+from requests      import get
 
 pluginManager = PluginManager()
 extManager = ExtractorManager()
@@ -206,6 +208,34 @@ def get_extractor_video_sources(plugin, url):
             results.append(source)
 
         return results
+
+def get_current_version(module_name):
+    try:
+        version = get_distribution(module_name).version
+        return version
+    except Exception as ex:
+        print(f"error: {ex}")
+        return "0"
+
+def check_new_version(module_name):
+    try:
+        current_version = get_distribution(module_name).version
+
+        req = get(f"https://pypi.org/pypi/{module_name}/json")
+        if req.status_code == 200:
+            last_version = req.json()["info"]["version"]
+            print(f"last version : {last_version}")
+
+            if current_version != last_version:
+                #check_call([sys.executable, "-m", "pip", "install", "--upgrade", module_name, "--break-system-packages"])
+                return True
+            else:
+                return False
+        else:
+            return False
+    except Exception as ex:
+        print(f"error: {ex}")
+        return False
 
 def close_loop():
     try:

@@ -71,6 +71,11 @@ public abstract partial class KekikPlayerBaseViewModel: BaseMpvContextViewModel
 
     [ObservableProperty] private string errorMessage;
 
+
+    [ObservableProperty] private string currentVersion;
+
+    [ObservableProperty] private bool isUpdate = false;
+
     public ObservableCollection<SearchResult> SearchResults { get; } = new();
     public ObservableCollection<Plugin> PluginGroups { get; } = new();
     public ObservableCollection<VideoLink> VideoLinks { get; } = new();
@@ -742,6 +747,7 @@ public abstract partial class KekikPlayerBaseViewModel: BaseMpvContextViewModel
         }
     }
 
+
     [RelayCommand]
     private void ToggleSettingsVisibility()
     {
@@ -762,7 +768,40 @@ public abstract partial class KekikPlayerBaseViewModel: BaseMpvContextViewModel
         InitializeModel();
     }
 
-    private async void ShowMessage(string message)
+    [RelayCommand]
+    private void CheckVersion()
+    {
+        CurrentVersion = pythonService.GetCurrentVersion();
+
+        IsUpdate = pythonService.CheckNewVersion();
+
+        string message = "Güncelleme yok!";
+
+        if(IsUpdate)
+        {
+            message = "Güncelleme var!";
+        }
+
+        ShowMessage(message);
+    }
+
+    [RelayCommand]
+    private async void UpdateVersion()
+    {
+        bool result = await pythonService.UpdateKekikStream();
+
+        string message = "Güncelleme başarısız!";
+
+        if (result)
+        {
+            message = "Güncelleme başarılı!";
+        }
+
+        ShowMessage(message);
+    }
+
+
+    private async void ShowMessage(string message, string icon = "warning")
     {
         // https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/Exmaple2.0/Views/MainWindow.axaml.cs
 

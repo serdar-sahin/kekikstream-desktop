@@ -428,6 +428,56 @@ namespace KekikPlayer.Core.Services
             return false;
         }
 
+
+
+        public string GetCurrentVersion()
+        {
+            if (!PythonEngine.IsInitialized)
+            {
+                Initialize();
+            }
+
+            using (Py.GIL())
+            {
+                dynamic kekik = Py.Import("KekikStream.kekik");
+
+                if (kekik != null)
+                {
+                    dynamic version = kekik.get_current_version("KekikStream");
+
+                    string currentVersion = (string)version.ToString();
+
+                    return currentVersion;
+                }
+            }
+
+            return "0";
+        }
+
+        public bool CheckNewVersion()
+        {
+            if (!PythonEngine.IsInitialized)
+            {
+                Initialize();
+            }
+
+            using (Py.GIL())
+            {
+                dynamic kekik = Py.Import("KekikStream.kekik");
+
+                if (kekik != null)
+                {
+                    dynamic pyresult = kekik.check_new_version("KekikStream");
+
+                    bool result = (bool)pyresult;
+
+                    return result;
+                }
+            }
+
+            return false;
+        }
+
         public async Task<bool> InstallKekikStream()
         {
             try

@@ -511,11 +511,17 @@
 							<StackPanel>
 								<TextBlock FontSize="18" Text="Güncellemeler" />
 								<Grid RowDefinitions="Auto,Auto">
-									<TextBox
-										Grid.Row="1"
+									<StackPanel Orientation="Horizontal"
+												Grid.Row="1">
+										<TextBox
 										Margin="0,10,0,0"
 										Text="KekikStream.Python"
 										IsEnabled="False"/>
+										<TextBlock
+										Margin="5,10,0,0"
+										Text="{Binding CurrentVersion}"
+										IsEnabled="False"/>
+									</StackPanel>
 								</Grid>
 								<StackPanel
 									Grid.Row="1"
@@ -523,8 +529,8 @@
 									HorizontalAlignment="Right"
 									VerticalAlignment="Bottom"
 									Orientation="Horizontal">
-									<Button Command="{Binding SaveSettingsCommand}" Content="Kontrol"/>
-									<Button Command="{Binding SaveSettingsCommand}" Content="Güncelle" Margin="10,0,0,0" IsEnabled="False"/>
+									<Button Command="{Binding CheckVersionCommand}" Content="Kontrol"/>
+									<Button Command="{Binding UpdateVersionCommand}" Content="Güncelle" IsEnabled="{Binding IsUpdate}" Margin="10,0,0,0"/>
 								</StackPanel>
 								<Grid RowDefinitions="Auto,Auto">
 									<TextBox
@@ -539,8 +545,8 @@
 									HorizontalAlignment="Right"
 									VerticalAlignment="Bottom"
 									Orientation="Horizontal">
-									<Button Command="{Binding SaveSettingsCommand}" Content="Kontrol" />
-									<Button Command="{Binding SaveSettingsCommand}" Content="Güncelle" Margin="10,0,0,0" IsEnabled="False"/>
+									<Button Content="Kontrol" IsEnabled="False"/>
+									<Button Content="Güncelle" Margin="10,0,0,0" IsEnabled="False"/>
 									<Button
 										Margin="10,0,0,0"
 										Command="{Binding CloseSettingsCommand}"
