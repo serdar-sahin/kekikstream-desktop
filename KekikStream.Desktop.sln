@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibMpv", "LibMpv", "{66BC18F7-C58E-46E2-9E50-B8FC5900C0CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMpv.Avalonia", "src\LibMpv\LibMpv.Avalonia\LibMpv.Avalonia.csproj", "{285E779A-31F3-4D72-8B41-08F0CEE46488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMpv.Client", "src\LibMpv\LibMpv.Client\LibMpv.Client.csproj", "{3F7CD500-ED2E-4039-848F-BE93A748230B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMpv.MVVM", "src\LibMpv\LibMpv.MVVM\LibMpv.MVVM.csproj", "{543240E1-7204-45E4-A9A3-EB6F56A0EEE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KekikPlayer", "src\KekikPlayer\KekikPlayer\KekikPlayer.csproj", "{09DAC7C0-7CDC-451C-8B26-FEEAF5929647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KekikPlayer.Core", "src\KekikPlayer\KekikPlayer.Core\KekikPlayer.Core.csproj", "{ECC022AF-C382-4B09-9308-A19FD854D326}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KekikPlayer.Desktop", "src\KekikPlayer\KekikPlayer.Desktop\KekikPlayer.Desktop.csproj", "{0AF009EE-3598-450D-AEFA-4141B07C813E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KekikPlayer.Console", "src\KekikPlayer\KekikPlayer.Console\KekikPlayer.Console.csproj", "{74CFDCC0-A6DD-46EF-8D9C-BD2EB9F94332}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{285E779A-31F3-4D72-8B41-08F0CEE46488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285E779A-31F3-4D72-8B41-08F0CEE46488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285E779A-31F3-4D72-8B41-08F0CEE46488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285E779A-31F3-4D72-8B41-08F0CEE46488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F7CD500-ED2E-4039-848F-BE93A748230B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F7CD500-ED2E-4039-848F-BE93A748230B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F7CD500-ED2E-4039-848F-BE93A748230B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F7CD500-ED2E-4039-848F-BE93A748230B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543240E1-7204-45E4-A9A3-EB6F56A0EEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543240E1-7204-45E4-A9A3-EB6F56A0EEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543240E1-7204-45E4-A9A3-EB6F56A0EEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543240E1-7204-45E4-A9A3-EB6F56A0EEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09DAC7C0-7CDC-451C-8B26-FEEAF5929647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09DAC7C0-7CDC-451C-8B26-FEEAF5929647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09DAC7C0-7CDC-451C-8B26-FEEAF5929647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09DAC7C0-7CDC-451C-8B26-FEEAF5929647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC022AF-C382-4B09-9308-A19FD854D326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC022AF-C382-4B09-9308-A19FD854D326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC022AF-C382-4B09-9308-A19FD854D326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC022AF-C382-4B09-9308-A19FD854D326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF009EE-3598-450D-AEFA-4141B07C813E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF009EE-3598-450D-AEFA-4141B07C813E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF009EE-3598-450D-AEFA-4141B07C813E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF009EE-3598-450D-AEFA-4141B07C813E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CFDCC0-A6DD-46EF-8D9C-BD2EB9F94332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CFDCC0-A6DD-46EF-8D9C-BD2EB9F94332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CFDCC0-A6DD-46EF-8D9C-BD2EB9F94332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CFDCC0-A6DD-46EF-8D9C-BD2EB9F94332}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{285E779A-31F3-4D72-8B41-08F0CEE46488} = {66BC18F7-C58E-46E2-9E50-B8FC5900C0CE}
+		{3F7CD500-ED2E-4039-848F-BE93A748230B} = {66BC18F7-C58E-46E2-9E50-B8FC5900C0CE}
+		{543240E1-7204-45E4-A9A3-EB6F56A0EEE4} = {66BC18F7-C58E-46E2-9E50-B8FC5900C0CE}
+	EndGlobalSection
+EndGlobal

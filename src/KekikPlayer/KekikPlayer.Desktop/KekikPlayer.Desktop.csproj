@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+	  <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm64</RuntimeIdentifiers>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\natives\windows\x86_64\libmpv-2.dll" Link="x86_64\libmpv-2.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\..\LibMpv\LibMpv.Client\LibMpv.Client.csproj" />
+    <ProjectReference Include="..\KekikPlayer\KekikPlayer.csproj" />
+  </ItemGroup>
+
+  
+</Project>
