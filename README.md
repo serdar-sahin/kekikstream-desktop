@@ -7,6 +7,9 @@
 Bilgisayarda .Net 9  kurulu olması gerekir Python kurulu olmasına gerek yoktur. 
 Yazılım ilk çalıştığında otomatik olarak kendi embedded Python ortamını (zaten bir Python kurulumu varsa ondan izole çalışır) ve pip üzerinden KekikStream kurulumunu yapacaktır.
 
+Şimdilik sadece windows x64 için derlendi. Linux ve macos için artı çalışma yapmak gerekir.
+Gömülü mpv player tarafında da altyazılar, dual videolar için ses seçimleri gibi çalışmalar yapılması lazım.
+
 Uzun zamandır CloudStream, Kodi, MediaPortal gibi bir proje geliştirmek istiyordum ama vakit bulamıyordum.
 
 Kodi harika bir proje, her işletim sisteminde çalışabilir fakat masaüstü kullanım deneyimi başarısız.
