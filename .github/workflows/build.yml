@@ -31,7 +31,7 @@ jobs:
         run: dotnet restore
 
       - name: 🔨 Projeyi Derle
-        run: dotnet publish -c Release -r win-x64 --self-contained false -o publish
+        run: dotnet publish -c Release -r win-x64 --self-contained false -f net9.0 -o publish
 
       - name: 🗜️ Derlenmiş Projeyi 7z ile Arşivle
         run: |
