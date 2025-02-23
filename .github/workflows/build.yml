@@ -30,13 +30,12 @@ jobs:
       - name: 📦 Bağımlılıkları Yükle
         run: dotnet restore
 
-      - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
-        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
+      - name: 🔨 Projeyi Derle
+        run: dotnet publish -c Release -r win-x64 --self-contained false -o publish
 
-      - name: 🗜️ "KekikPlayer.exe" Dosyasını 7z ile Arşivle
+      - name: 🗜️ Derlenmiş Projeyi 7z ile Arşivle
         run: |
-          cd publish
-          7z a -mx9 ../KekikPlayer.7z KekikPlayer.exe
+          7z a -mx9 KekikPlayer.7z ./publish/*
 
       - name: 🏷️ Versiyon Numarası Al
         id: version
