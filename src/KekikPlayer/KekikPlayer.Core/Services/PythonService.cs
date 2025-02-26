@@ -64,7 +64,6 @@ namespace KekikPlayer.Core.Services
                 }
                 else
                 {
-                    // Python yolunu PATH içinde arayın
                     string[] pathDirs = path.Split(';');
                     foreach (var dir in pathDirs)
                     {
@@ -582,6 +581,35 @@ namespace KekikPlayer.Core.Services
                 Python.Deployment.Installer.RunCommand($"\"{pipPath}\" install -U \"{moduleName}\" ");
 
                 Debug.WriteLine("KekikStream Ok");
+
+                // copy embed kekik.py to path
+                string kekikPath = Installer.EmbeddedPythonHome + @"\Lib\site-packages\KekikStream";
+                if (!Directory.Exists(kekikPath))
+                {
+                    var assembly = Assembly.GetExecutingAssembly();
+                    string kekikPy = "kekik.py";
+                    //string resourceName = $"{assembly.GetName().Name}.{resourceName}";
+                    string resourceName = "KekikPlayer.Core.Python.kekik.py";
+                    Debug.WriteLine(resourceName);
+
+                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                    {
+                        if (stream == null)
+                        {
+                            Debug.WriteLine("Resource not found: " + resourceName);
+                            return false;
+                        }
+
+                        string outputPath = Path.Combine(kekikPath, kekikPy);
+
+                        using (FileStream fs = new FileStream(outputPath, FileMode.Create, FileAccess.Write))
+                        {
+                            stream.CopyTo(fs);
+                        }
+
+                        Debug.WriteLine("kekik.py Ok");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1225,15 +1253,17 @@ namespace KekikPlayer.Core.Services
                 {
                     dynamic kekik = Py.Import("KekikStream.kekik");
 
-                    dynamic result = kekik.get_video_links(pluginName, url);
-
-                    // list<str>
-                    foreach (var item in result)
+                    dynamic? result = kekik.get_video_links(pluginName, url);
+                    if (!Object.ReferenceEquals(null, result))
                     {
-                        links.Add(new VideoLink
+                        // list<str>
+                        foreach (var item in result)
                         {
-                            Url = item,
-                        });
+                            links.Add(new VideoLink
+                            {
+                                Url = item,
+                            });
+                        }
                     }
                 }
 
@@ -1279,7 +1309,7 @@ namespace KekikPlayer.Core.Services
                         {
                             dynamic? subtitles = item["subtitles"];
                             //if(subtitles != null)
-                            if (Object.ReferenceEquals(null, subtitles))
+                            if (!Object.ReferenceEquals(null, subtitles))
                             {
                                 foreach (var subtitle in subtitles)
                                 {
@@ -1303,7 +1333,7 @@ namespace KekikPlayer.Core.Services
                         {
                             dynamic? headers = item["headers"];
                             //if (headers != null)
-                            if (Object.ReferenceEquals(null, headers))
+                            if (!Object.ReferenceEquals(null, headers))
                                 {
                                 foreach (var header in headers)
                                 {

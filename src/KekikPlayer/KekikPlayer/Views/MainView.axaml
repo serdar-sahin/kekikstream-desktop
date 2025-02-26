@@ -479,7 +479,7 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 Orientation="Horizontal">
-								<CheckBox FontSize="16" IsChecked="{Binding SearchAll}" Margin="0">Tüm Eklentierde</CheckBox>
+								<CheckBox FontSize="16" IsChecked="{Binding SearchAll}" Margin="0">Tüm Eklentilerde</CheckBox>
 								<TextBlock FontSize="16" Text="Film veya Dizi" Margin="10" />
 								<Button Command="{Binding SearchCommand}" Content="Ara" />
 								<Button

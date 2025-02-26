@@ -788,16 +788,48 @@ public abstract partial class KekikPlayerBaseViewModel: BaseMpvContextViewModel
     [RelayCommand]
     private async void UpdateVersion()
     {
-        bool result = await pythonService.UpdateKekikStream();
+        IsBusy = true;
+        await Task.Delay(100);
+
+        //var result = await pythonService.UpdateKekikStream();
+        var result = await Task.Run(async () => { return await pythonService.UpdateKekikStream(); });
 
         string message = "Güncelleme başarısız!";
 
         if (result)
         {
-            message = "Güncelleme başarılı!";
-        }
+            IsBusy = false;
+            message = "Güncelleme başarılı! Uygulama yeniden başlatılacak.";
 
-        ShowMessage(message);
+            var box = MessageBoxManager.GetMessageBoxStandard(
+            new MessageBoxStandardParams
+            {
+                ButtonDefinitions = ButtonEnum.Ok,
+                ContentTitle = "KekikStream.Desktop",
+                //ContentHeader = header,
+                ContentMessage = message,
+                Icon = MsBox.Avalonia.Enums.Icon.Warning,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                CanResize = false,
+                MaxWidth = 400,
+                MaxHeight = 200,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ShowInCenter = true,
+                Topmost = true,
+                SystemDecorations = SystemDecorations.None,
+            });
+
+            var boxResult = await box.ShowWindowAsync();
+            if(boxResult == ButtonResult.Ok)
+            {
+                RestartApplication();
+            }
+        }
+        else
+        {
+            IsBusy = false;
+            ShowMessage(message);
+        }
     }
 
 
@@ -908,5 +940,12 @@ public abstract partial class KekikPlayerBaseViewModel: BaseMpvContextViewModel
         }
 
         return null;
+    }
+
+    private void RestartApplication()
+    {
+        var exePath = Process.GetCurrentProcess().MainModule.FileName;
+        Process.Start(exePath);
+        Environment.Exit(0);
     }
 }

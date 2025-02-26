@@ -10,6 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Python\HdfilmCehennemi_Test.py" />
+    <EmbeddedResource Include="Python\HdfilmCehennemi.py" />
     <EmbeddedResource Include="Python\kekik.py" />
   </ItemGroup>
 
