@@ -1,5 +1,7 @@
 # KekikStream.Desktop
 
+**⚠️ Bu proje daha fazla geliştirilmeyecektir. Meraklısı ve eklenti geliştiricileri için çok yakında: [MediaManiac](https://github.com/MediaManiacs)  **
+
 ## Nedir? 
 
 [KekikStream](https://github.com/keyiflerolsun/KekikStream) python konsol projesinin dotnet 9 Avalonia tabanlı crossplatform desktop kullanıcı dostu versiyonudur.
