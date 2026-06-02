@@ -1,6 +1,6 @@
 # KekikStream.Desktop
 
-**⚠️ Bu proje daha fazla geliştirilmeyecektir. Meraklısı ve eklenti geliştiricileri için çok yakında: [MediaManiac](https://github.com/MediaManiacs)  **
+**⚠️ Bu proje daha fazla geliştirilmeyecektir. Meraklısı ve eklenti geliştiricileri için: [manitux](https://github.com/manitux-app/manitux)  **
 
 ## Nedir? 
 
